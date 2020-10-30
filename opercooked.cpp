@@ -17,7 +17,7 @@ int main(){
     // Main Menu
     while(1)
     {
-        for (int i = 0; i < 25; i++) puts("");        
+        for (int i = 0; i < 50; i++) puts("");        
         puts("Welcome to Opercooked");
         printf("Today Profit: $ %d\n", profit);
         puts("========================");
@@ -29,7 +29,7 @@ int main(){
         int inputMenu;
         printf(">>");
         scanf ("%d", &inputMenu);
-        for (int i = 0; i < 25; i++) puts("");
+        for (int i = 0; i < 50; i++) puts("");
         if (inputMenu == 1) addMenu();
         else if (inputMenu == 5) break;    
     }
@@ -49,7 +49,7 @@ void addMenu(){
         int choose;
         scanf ("%d", &choose); getchar();
         if (choose == 1) addDesert(); break;
-        for (int i = 0; i < 25; i++) puts("");        
+        for (int i = 0; i < 50; i++) puts("");        
     }
 
 
