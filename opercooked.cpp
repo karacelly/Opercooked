@@ -32,11 +32,11 @@ int main(){
         puts("5. Exit");
         int inputMenu;
         printf(">> ");
-        scanf ("%d", &inputMenu); getchar();
+        scanf ("%d", &inputMenu); fflush(stdin);
         for (int i = 0; i < 50; i++) puts("");
-        if (inputMenu == 1) addMenu();
+        if (inputMenu == 5) break;    
+        else if (inputMenu == 1) addMenu();
         else if (inputMenu == 4) order();
-        else if (inputMenu == 5) break;    
     }
 
     return 0;
@@ -52,7 +52,7 @@ void addMenu(){
         puts("2. Drink");
         printf ("Choose: ");
         int choose;
-        scanf ("%d", &choose); getchar();
+        scanf ("%d", &choose); fflush(stdin);
         if (choose == 1) addDesert();
         else if (choose == 2) addDrink();
         for (int i = 0; i < 50; i++) puts("");        
@@ -65,15 +65,16 @@ void addMenu(){
 void addDesert(){
     for (int i = 0; i < 50; i++) puts("");        
     strcpy(typeMenu[currentMenu], "Dessert");
-    char namaMenu[255], toppingMenu[255];
     int price;
     double calorie;
+    char namaMenu[255], toppingMenu[255];
 
     //input nama dessert
     while(1)
     {
+        fflush(stdin);
         printf ("Input the name [at least 5 characters]: ");
-        scanf ("%[^\n]", namaMenu); getchar();
+        scanf ("%[^\n]", namaMenu);
         if (strlen(namaMenu) >= 5) break;
     }
     strcpy(menuName[currentMenu], namaMenu);
@@ -81,8 +82,9 @@ void addDesert(){
     //input harga
     while(1)
     {
+        fflush(stdin);
         printf ("Input the price [10 - 500]: $ "); 
-        scanf ("%d", &price); getchar();
+        scanf ("%d", &price);
         if (price >= 10 && price <= 500) break;
     }
     menuPrice[currentMenu] = price;
@@ -90,8 +92,9 @@ void addDesert(){
     //input topping
     while(1)
     {
+        fflush(stdin);
         printf ("Input the topping ['Caramel' | 'Honey' | 'Syrup'](Case Insensitive): ");
-        scanf ("%s", toppingMenu); getchar();
+        scanf ("%s", toppingMenu);
         if (toppingMenu[0] > 'Z') toppingMenu[0] -= 32;
         for (int i = 1; i < strlen(toppingMenu); i++)
         {
@@ -104,8 +107,9 @@ void addDesert(){
     //input kalori
     while(1)
     {
+        fflush(stdin);
         printf ("Insert calories [1.00 - 99.00]: ");
-        scanf ("%lf", &calorie); getchar();
+        scanf ("%lf", &calorie); fflush(stdin);
         if (calorie >= 1.00 && calorie <= 99.00) break;
     }
     calories[currentMenu] = calorie;
@@ -123,8 +127,9 @@ void addDrink(){
     //input nama drink
     while(1)
     {
+        fflush(stdin);
         printf ("Input the name [at least 5 characters]: ");
-        scanf ("%[^\n]", namaMenu); getchar();
+        scanf ("%[^\n]", namaMenu);
         if (strlen(namaMenu) >= 5) break;
     }
     strcpy(menuName[currentMenu], namaMenu);
@@ -132,8 +137,9 @@ void addDrink(){
     //input harga
     while(1)
     {
+        fflush(stdin);
         printf ("Input the price [10 - 500]: $ "); 
-        scanf ("%d", &price); getchar();
+        scanf ("%d", &price);
         if (price >= 10 && price <= 500) break;
     }
     menuPrice[currentMenu] = price;
@@ -141,8 +147,9 @@ void addDrink(){
     //input flavor
     while(1)
     {
+        fflush(stdin);
         printf ("Input the flavor ['Mint' | 'Mix Berry' | 'Cheese'](Case Sensitive): ");
-        scanf ("%[^\n]", rasaMenu); getchar();
+        scanf ("%[^\n]", rasaMenu);
         if (strcmp("Mint", rasaMenu) == 0 || strcmp("Mix Berry", rasaMenu) == 0 || strcmp("Cheese", rasaMenu) == 0) break;
     }
     strcpy(menuFlavor[currentMenu], rasaMenu);
@@ -150,8 +157,9 @@ void addDrink(){
     //input size
     while(1)
     {
+        fflush(stdin);
         printf ("Input the size [S | M | L]: ");
-        scanf ("%c", &size); getchar();
+        scanf ("%c", &size); fflush(stdin);
         if (strcmp("S", size) == 0 || strcmp("M", size) == 0 || strcmp("L", size) == 0) break;
     }
     strcpy(menuSize[currentMenu], size);
@@ -194,7 +202,7 @@ void order(){
                 if (input >= 1 && input <= currentMenu - 1) break;
             }
             printf("\nSuccessfully add to order list!\n");
-            printf ("Press Enter to continue"); getchar();
+            printf ("\nPress Enter to continue"); getchar();
         }
     
 }
