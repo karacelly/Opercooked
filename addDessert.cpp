@@ -20,44 +20,35 @@ void addDesert(){
     double calorie;
 
     //input nama dessert
-    while(1)
+    do
     {
-    printf ("Input the name [at least 5 characters]: ");
-    scanf ("%[^\n]", namaMenu); getchar();
-    if (strlen(namaMenu) >= 5) break;
-    }
+        printf ("Input the name [at least 5 characters]: ");
+        scanf ("%[^\n]", namaMenu); getchar();
+    }while(strlen(namaMenu) < 5);
     strcpy(menuName[currentMenu], namaMenu);
 
     //input harga
-    while(1)
+    do
     {
         printf ("Input the price [10 - 500]: "); 
         scanf ("%d", &price); getchar();
-        if (price >= 10 && price <= 500) break;
-    }
+    }while(price < 10 || price > 500);
     menuPrice[currentMenu] = price;
 
     //input topping
-    while(1)
+    do
     {
         printf ("Input the topping ['Caramel' | 'Honey' | 'Syrup'](Case Insensitive): ");
         scanf ("%s", toppingMenu); getchar();
-        if (toppingMenu[0] > 'Z') toppingMenu[0] -= 32;
-        for (int i = 1; i < strlen(toppingMenu); i++)
-        {
-            if (toppingMenu[i] < 'a') toppingMenu[i] += 32;
-        }
-        if (strcmp("Caramel", toppingMenu) == 0 || strcmp("Honey", toppingMenu) == 0 || strcmp("Syrup", toppingMenu) == 0) break;
-    }
+    }while(strcmp("Caramel", toppingMenu) != 0 || strcmp("Honey", toppingMenu) != 0 || strcmp("Syrup", toppingMenu) != 0);
     strcpy(topping[currentMenu], toppingMenu);
 
     //input kalori
-    while(1)
+    do
     {
         printf ("Insert calories [1.00 - 99.00]: ");
         scanf ("%lf", &calorie); getchar();
-        if (calorie >= 1.00 && calorie <= 99.00) break;
-    }
+    }while(calorie < 1.00 || calorie > 99.00);
     calories[currentMenu] = calorie;
     printf("Successfully added a new menu!");
     getchar();
@@ -68,13 +59,13 @@ void addDesert(){
     srand(time(0));
     int totaltime = (rand() % 40)+50;
 
-    if(strcmp(toppingMenu, "caramel") == 0){
+    if(strcmp(toppingMenu, "Caramel") == 0){
         totaltime += 10;
     }
-    else if(strcmp(toppingMenu, "honey") == 0){
+    else if(strcmp(toppingMenu, "Honey") == 0){
         totaltime+=15;
     }
-    else if(strcmp(toppingMenu, "syrup") == 0){
+    else if(strcmp(toppingMenu, "Syrup") == 0){
         totaltime+=20;
     }
 
