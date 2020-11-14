@@ -2,19 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-char menuName[100][255];
-int menuPrice[100];
 int currentMenu = 1;
-char typeMenu[100][255];
-char menuSize[100][2];
-char menuFlavor[100][50];
-int drinkTime[100];
+
+struct pesanDrink orderDrink[100];
 
 void addDrink();
 
 void addDrink(){
-    strcpy(typeMenu[currentMenu], "Drink");
-    char namaMenu[255], toppingDrink[255];
+    strcpy(orderDrink[currentMenu].typeMenu, "Drink");
+    char namaMenu[255], flavor[255];
     int price;
     char size[2];
 
@@ -24,25 +20,25 @@ void addDrink(){
         printf ("Input the name [at least 5 characters]: ");
         scanf ("%[^\n]", namaMenu); getchar();
     }while(strlen(namaMenu) < 5);
-    strcpy(menuName[currentMenu], namaMenu);
+    strcpy(orderDrink[currentMenu].menuName, namaMenu);
 
     //input harga
     do {
         printf ("Input the price [10 - 500]: $ "); 
         scanf ("%d", &price); getchar();
     }while(price < 10 || price > 500);
-    menuPrice[currentMenu] = price;
+    orderDrink[currentMenu].menuPrice = price;
 
     //input flavor
     int flag = 0;
     do {   
-        printf ("Input the topping ['Mint' | 'Mix Berry' | 'Cheese'](Case Sensitive): ");
-        scanf ("%s", toppingDrink); getchar();
-        if (strcmp("Mint", toppingDrink) == 0 || strcmp("Mix Berry", toppingDrink) == 0 || strcmp("Cheese", toppingDrink) == 0){
+        printf ("Input the flavor ['Mint' | 'Mix Berry' | 'Cheese'](Case Sensitive): ");
+        scanf ("%s", flavor); getchar();
+        if (strcmp("Mint", flavor) == 0 || strcmp("Mix Berry", flavor) == 0 || strcmp("Cheese", flavor) == 0){
             flag = 1;
         }
     }while(flag == 0);
-    strcpy(menuFlavor[currentMenu], toppingDrink);
+    strcpy(orderDrink[currentMenu].menuFlavor, flavor);
 
     //input size
     flag = 0;
@@ -53,19 +49,18 @@ void addDrink(){
             flag = 1;
         }
     }while(flag == 0);
-    strcpy(menuSize[currentMenu], size);
+    strcpy(orderDrink[currentMenu].menuSize, size);
 
-    int totalTime = (rand() % 41) + 10;
-    if (strcmp(toppingDrink, "Mint") == 0){
-        totalTime+=10;
+    orderDrink[currentMenu].drinkTime = (rand() % 41) + 10;
+    if (strcmp(flavor, "Mint") == 0){
+        orderDrink[currentMenu].drinkTime += 10;
     }
-    else if(strcmp(toppingDrink, "Mix Berry") == 0){
-        totalTime+=20;
+    else if(strcmp(flavor, "Mix Berry") == 0){
+        orderDrink[currentMenu].drinkTime += 20;
     }
-    else if(strcmp(toppingDrink, "Cheese") == 0){
-        totalTime+=30;
+    else if(strcmp(flavor, "Cheese") == 0){
+        orderDrink[currentMenu].drinkTime += 30;
     }
-    drinkTime[currentMenu]=totalTime;
 
     printf("Successfully added a new menu!");
     getchar();
