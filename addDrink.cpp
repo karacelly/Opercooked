@@ -18,45 +18,41 @@ void addDrink(){
     int price;
     char size[2];
 
+    getchar();
     //input nama drink
-    while(1)
-    {
-    
-        fflush(stdin);    
+    do {   
         printf ("Input the name [at least 5 characters]: ");
         scanf ("%[^\n]", namaMenu); getchar();
-        if (strlen(namaMenu) >= 5) break;
-    }
+    }while(strlen(namaMenu) < 5);
     strcpy(menuName[currentMenu], namaMenu);
 
     //input harga
-    while(1)
-    {
-        fflush(stdin);
+    do {
         printf ("Input the price [10 - 500]: $ "); 
         scanf ("%d", &price); getchar();
-        if (price >= 10 && price <= 500) break;
-    }
+    }while(price < 10 || price > 500);
     menuPrice[currentMenu] = price;
 
     //input flavor
-    while(1)
-    {   
-        fflush(stdin);
+    int flag = 0;
+    do {   
         printf ("Input the topping ['Mint' | 'Mix Berry' | 'Cheese'](Case Sensitive): ");
         scanf ("%s", toppingDrink); getchar();
-        if (strcmp("Mint", toppingDrink) == 0 || strcmp("Mix Berry", toppingDrink) == 0 || strcmp("Cheese", toppingDrink) == 0) break;
-    }
+        if (strcmp("Mint", toppingDrink) == 0 || strcmp("Mix Berry", toppingDrink) == 0 || strcmp("Cheese", toppingDrink) == 0){
+            flag = 1;
+        }
+    }while(flag == 0);
     strcpy(menuFlavor[currentMenu], toppingDrink);
 
     //input size
-    while(1)
-    {
-        fflush(stdin);
+    flag = 0;
+    do {
         printf ("Insert the size [S | M | L](Case Sensitive): ");
         scanf ("%s", size); getchar();
-        if (strcmp("S", size) == 0 || strcmp("M", size) == 0 || strcmp("L", size)==0) break;
-    }
+        if (strcmp("S", size) == 0 || strcmp("M", size) == 0 || strcmp("L", size)==0){
+            flag = 1;
+        }
+    }while(flag == 0);
     strcpy(menuSize[currentMenu], size);
 
     int totalTime = (rand() % 41) + 10;
