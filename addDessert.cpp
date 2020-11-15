@@ -15,8 +15,9 @@ void addDessert(){
 
     //input nama dessert
     getchar();
+
     do 
-	{
+	  {
         printf ("Input the name [at least 5 characters]: ");
         scanf ("%[^\n]", namaMenu); getchar();
     }while(strlen(namaMenu) < 5);
@@ -24,7 +25,7 @@ void addDessert(){
 
     //input harga
     do 
-	{
+	  {
         printf ("Input the price [10 - 500]: "); 
         scanf ("%d", &price); getchar();
     }while(price < 10 || price > 500);
@@ -33,7 +34,7 @@ void addDessert(){
     //input topping
     int flag = 0;
     do 
-	{
+	  {
         printf ("Input the topping ['Caramel' | 'Honey' | 'Syrup'](Case Insensitive): ");
         scanf ("%s", toppingMenu); getchar();
         if (toppingMenu[0] > 'Z') toppingMenu[0] -= 32;
@@ -41,15 +42,17 @@ void addDessert(){
             flag = 1;
         }
     }while(flag == 0);
+
     strcpy(orderDessert[currentMenu].topping, toppingMenu);
 
     //input kalori
     do 
-	{
+	  {
         printf ("Insert calories [1.00 - 99.00]: ");
         scanf ("%lf", &calorie); getchar();
     }while(calorie < 1.00 || calorie > 99.00);
     orderDessert[currentMenu].calories = calorie;
+
     printf("Successfully added a new menu!");
     getchar();
     currentMenu++;

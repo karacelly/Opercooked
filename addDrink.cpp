@@ -20,6 +20,7 @@ void addDrink(){
         printf ("Input the name [at least 5 characters]: ");
         scanf ("%[^\n]", namaMenu); getchar();
     }while(strlen(namaMenu) < 5);
+
     strcpy(orderDrink[currentMenu].menuName, namaMenu);
 
     //input harga
@@ -27,8 +28,9 @@ void addDrink(){
         printf ("Input the price [10 - 500]: $ "); 
         scanf ("%d", &price); getchar();
     }while(price < 10 || price > 500);
+  
     orderDrink[currentMenu].menuPrice = price;
-
+  
     //input flavor
     int flag = 0;
     do {   
@@ -49,6 +51,7 @@ void addDrink(){
             flag = 1;
         }
     }while(flag == 0);
+
     strcpy(orderDrink[currentMenu].menuSize, size);
 
     orderDrink[currentMenu].drinkTime = (rand() % 41) + 10;
