@@ -2,40 +2,42 @@
 #include <string.h>
 #include <time.h>
 
-void addDessertOrderTime(int indexMenu){
+void addDessertOrderTime(int totalDessert){
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     
-    orderDessert[indexMenu].orderTime.year = tm.tm_year + 1900;
-    orderDessert[indexMenu].orderTime.month = tm.tm_mon + 1;
-    orderDessert[indexMenu].orderTime.date = tm.tm_mday;
-    orderDessert[indexMenu].orderTime.hour = tm.tm_hour;
-    orderDessert[indexMenu].orderTime.min = tm.tm_min;
-    orderDessert[indexMenu].orderTime.sec = tm.tm_sec;
-    if (orderDessert[indexMenu].orderTime.hour > 12)
+    orderDessert[totalDessert].orderTime.year = tm.tm_year + 1900;
+    orderDessert[totalDessert].orderTime.month = tm.tm_mon + 1;
+    orderDessert[totalDessert].orderTime.date = tm.tm_mday;
+    orderDessert[totalDessert].orderTime.hour = tm.tm_hour;
+    orderDessert[totalDessert].orderTime.min = tm.tm_min;
+    orderDessert[totalDessert].orderTime.sec = tm.tm_sec;
+    if (orderDessert[totalDessert].orderTime.hour > 12)
     {
-        strcpy(orderDessert[indexMenu].orderTime.form, "PM");
-        orderDessert[indexMenu].orderTime.hour -= 12;
+        strcpy(orderDessert[totalDessert].orderTime.form, "PM");
+        orderDessert[totalDessert].orderTime.hour -= 12;
     }
-    else strcpy(orderDessert[indexMenu].orderTime.form, "AM");
+    else strcpy(orderDessert[totalDessert].orderTime.form, "AM");
+    //printf("%d/%02d/%02d %02d:%02d:%02d %s\n", year, month, date, hour, min, sec, form);
 }
 
-void addDrinkOrderTime(int indexMenu){
+void addDrinkOrderTime(int totalDrink){
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     
-    orderDrink[indexMenu].orderTime.year = tm.tm_year + 1900;
-    orderDrink[indexMenu].orderTime.month = tm.tm_mon + 1;
-    orderDrink[indexMenu].orderTime.date = tm.tm_mday;
-    orderDrink[indexMenu].orderTime.hour = tm.tm_hour;
-    orderDrink[indexMenu].orderTime.min = tm.tm_min;
-    orderDrink[indexMenu].orderTime.sec = tm.tm_sec;
-    if (orderDrink[indexMenu].orderTime.hour > 12)
+    orderDrink[totalDrink].orderTime.year = tm.tm_year + 1900;
+    orderDrink[totalDrink].orderTime.month = tm.tm_mon + 1;
+    orderDrink[totalDrink].orderTime.date = tm.tm_mday;
+    orderDrink[totalDrink].orderTime.hour = tm.tm_hour;
+    orderDrink[totalDrink].orderTime.min = tm.tm_min;
+    orderDrink[totalDrink].orderTime.sec = tm.tm_sec;
+    if (orderDrink[totalDrink].orderTime.hour > 12)
     {
-        strcpy(orderDrink[indexMenu].orderTime.form, "PM");
-        orderDrink[indexMenu].orderTime.hour -= 12;
+        strcpy(orderDrink[totalDrink].orderTime.form, "PM");
+        orderDrink[totalDrink].orderTime.hour -= 12;
     }
-    else strcpy(orderDrink[indexMenu].orderTime.form, "AM");
+    else strcpy(orderDrink[totalDrink].orderTime.form, "AM");
+    //printf("%d/%02d/%02d %02d:%02d:%02d %s\n", year, month, date, hour, min, sec, form);
 }
 
 struct OrderTime
@@ -74,7 +76,8 @@ char menuFlavor[100][50];
 double calories[100];
 int menuPrice[100];
 int currentMenu = 1;
-int indexMenu = 1;
+int totalDessert = 1;
+int totalDrink = 1;
 
 pesanDessert orderDessert[105];
 pesanDrink orderDrink[105];
@@ -116,25 +119,26 @@ void order(){
             }
             if (strcmp(typeMenu[input], "Dessert") == 0)
             {
-                strcpy(orderDessert[indexMenu].typeMenu, typeMenu[input]);
-                strcpy(orderDessert[indexMenu].menuName, menuName[input]);
-                strcpy(orderDessert[indexMenu].topping, topping[input]);
-                orderDessert[indexMenu].calories =  calories[input];
-                orderDessert[indexMenu].menuPrice = menuPrice[input];
-                orderDessert[indexMenu].dessertTime = dessertTime[input];
-                addDessertOrderTime(indexMenu);
+                strcpy(orderDessert[totalDessert].typeMenu, typeMenu[input]);
+                strcpy(orderDessert[totalDessert].menuName, menuName[input]);
+                strcpy(orderDessert[totalDessert].topping, topping[input]);
+                orderDessert[totalDessert].calories =  calories[input];
+                orderDessert[totalDessert].menuPrice = menuPrice[input];
+                orderDessert[totalDessert].dessertTime = dessertTime[input];
+                addDessertOrderTime(totalDessert);
+                totalDessert++;
             }
             else if (strcmp(typeMenu[input], "Drink") == 0)
             {
-                strcpy(orderDrink[indexMenu].typeMenu, typeMenu[input]);
-                strcpy(orderDrink[indexMenu].menuName, menuName[input]);
-                strcpy(orderDrink[indexMenu].menuSize, menuSize[input]);
-                strcpy(orderDrink[indexMenu].menuFlavor, menuFlavor[input]);
-                orderDrink[indexMenu].menuPrice = menuPrice[input];
-                orderDrink[indexMenu].drinkTime = drinkTime[input];
-                addDrinkOrderTime(indexMenu);
+                strcpy(orderDrink[totalDrink].typeMenu, typeMenu[input]);
+                strcpy(orderDrink[totalDrink].menuName, menuName[input]);
+                strcpy(orderDrink[totalDrink].menuSize, menuSize[input]);
+                strcpy(orderDrink[totalDrink].menuFlavor, menuFlavor[input]);
+                orderDrink[totalDrink].menuPrice = menuPrice[input];
+                orderDrink[totalDrink].drinkTime = drinkTime[input];
+                addDrinkOrderTime(totalDrink);
+                totalDrink++;
             }
-            indexMenu++;
             printf("\nSuccessfully add to order list!\n");
             printf ("Press Enter to continue"); getchar();
         }
