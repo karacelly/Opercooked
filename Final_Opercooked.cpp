@@ -39,7 +39,7 @@ struct pesanDrink
     char menuSize[2];
     char menuFlavor[50];
     int drinkTime;
-    OrderTime orderTime;
+    struct OrderTime orderTime;
 };
 
 struct histdessert
@@ -48,7 +48,7 @@ struct histdessert
     char topping[255];
     double callories;
     int price;
-    OrderTime orderTime;
+    struct OrderTime orderTime;
 };
 
 struct histdrink
@@ -57,7 +57,7 @@ struct histdrink
     char size[2];
     char flavor[255];
     int price;
-    OrderTime orderTime;
+    struct OrderTime orderTime;
 };
 
 //global variables or structures

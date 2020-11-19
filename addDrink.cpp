@@ -3,6 +3,16 @@
 #include <stdlib.h>
 
 int currentMenu = 1;
+struct pesanDrink
+{
+    char menuName[255];
+    int menuPrice;
+    char typeMenu[255];
+    char menuSize[2];
+    char menuFlavor[50];
+    int drinkTime;
+    OrderTime orderTime;
+};
 
 struct pesanDrink orderDrink[100];
 

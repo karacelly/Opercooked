@@ -79,8 +79,8 @@ int currentMenu = 1;
 int totalDessert = 1;
 int totalDrink = 1;
 
-pesanDessert orderDessert[105];
-pesanDrink orderDrink[105];
+struct pesanDessert orderDessert[105];
+struct pesanDrink orderDrink[105];
 
 void order();
 
@@ -142,5 +142,4 @@ void order(){
             printf("\nSuccessfully add to order list!\n");
             printf ("Press Enter to continue"); getchar();
         }
-    
 }

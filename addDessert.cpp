@@ -16,9 +16,9 @@ struct pesanDessert{
 int currentMenu = 1;
 pesanDessert orderDessert[105];
 
-void addDesert();
+void addDessert();
 
-int main(){
+void addDessert(){
     strcpy(orderDessert[currentMenu].typeMenu, "Dessert");
     char namaMenu[255], toppingMenu[255];
     int price;
