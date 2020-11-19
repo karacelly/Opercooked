@@ -3,6 +3,16 @@
 #include <stdlib.h>
 
 int currentMenu = 1;
+struct pesanDrink
+{
+    char menuName[255];
+    int menuPrice;
+    char typeMenu[255];
+    char menuSize[2];
+    char menuFlavor[50];
+    int drinkTime;
+    OrderTime orderTime;
+};
 
 struct pesanDrink orderDrink[100];
 
@@ -28,9 +38,9 @@ void addDrink(){
         printf ("Input the price [10 - 500]: $ "); 
         scanf ("%d", &price); getchar();
     }while(price < 10 || price > 500);
-  
+
     orderDrink[currentMenu].menuPrice = price;
-  
+
     //input flavor
     int flag = 0;
     do {   
