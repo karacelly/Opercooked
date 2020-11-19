@@ -38,9 +38,9 @@ void addDrink(){
         printf ("Input the price [10 - 500]: $ "); 
         scanf ("%d", &price); getchar();
     }while(price < 10 || price > 500);
-  
+
     orderDrink[currentMenu].menuPrice = price;
-  
+
     //input flavor
     int flag = 0;
     do {   
